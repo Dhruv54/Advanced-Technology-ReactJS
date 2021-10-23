@@ -7,16 +7,17 @@ const UserSchema = new Schema({
         type: String,
         require: true
     },
-    email: {
+    password: {
         type: String,
         require: true
     },
-    password: {
+    email: {
         type: String,
         require: true
     },
     date: {
         type: Date,
+        default: Date.now
     },
 });
 
