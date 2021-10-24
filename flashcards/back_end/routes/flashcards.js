@@ -21,7 +21,7 @@ router.get("/getcards", fetchuser, async(req, res) => {
 
 //  Route:2--> Add new flashcard for a particular user
 
-router.get("/addcard", fetchuser, [body('question').isLength({ min: 5 }), body('answer').isLength({ min: 5 }), body('tag').isLength({ min: 2 })], async(req, res) => {
+router.post("/addcard", fetchuser, [body('question').isLength({ min: 5 }), body('answer').isLength({ min: 5 }), body('tag').isLength({ min: 2 })], async(req, res) => {
 
     const error = validationResult(req);
     if (!error.isEmpty()) {

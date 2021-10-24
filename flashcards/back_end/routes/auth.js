@@ -35,8 +35,9 @@ router.post("/createuser", [body('name').isLength({ min: 3 }), body('password').
                 }
             }
             const authtoken = jwt.sign(data, JWT_SECRET)
+            let success=true;
             res.json({
-                authtoken
+                success,authtoken
             })
         } catch (error) {
             console.error(error.message);
@@ -72,8 +73,9 @@ router.post("/login", [body('password').isLength({ min: 5 }), body('email').isEm
                 }
             }
             const authtoken = jwt.sign(data, JWT_SECRET)
+            let success=true;
             res.json({
-                authtoken
+                success,authtoken
             })
         } catch (error) {
             console.error(error.message);
@@ -88,7 +90,8 @@ router.post("/getuser", fetchuser, async(req, res) => {
     try {
         userId = req.user.id;
         const user = await User.findById(userId).select("-password");
-        res.send(user);
+        let success=true;
+        res.send(success,user);
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Server Not Responded");
